@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Game game</title>
+        <link rel="stylesheet" href="../static/css/chosegame.css" />
+    </head>
+    <body>
+        <h1>chose</h1>
+        <button id="logout">Đăng xuất</button>
+        <div class="profile">
+            <div id="name_me">
+                
+            </div>
+        </div>
+
+        <script src="../static/js/chosegame.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const userCookie = getCookie("user");
+                const passCookie = getCookie("pass");
+                const nameCookie = getCookie("name");
+                if (userCookie == undefined || passCookie == undefined) {
+                    console.log('Không tìm thấy cookie "user" hoặc "pass"');
+                    window.location.href = "/";
+                }
+
+                // Hàm lấy giá trị của cookie
+                function getCookie(name) {
+                    const cookies = document.cookie.split(";");
+                    for (let cookie of cookies) {
+                        cookie = cookie.trim();
+                        if (cookie.startsWith(name + "=")) {
+                            return decodeURIComponent(
+                                cookie.substring(name.length + 1)
+                            );
+                        }
+                    }
+                    return null;
+                }
+            });
+        </script>
+    </body>
+</html>
